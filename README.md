@@ -1,3 +1,4 @@
+![Screen Shot 2021-04-09 at 4 39 00 PM](https://user-images.githubusercontent.com/6299223/114250298-20b47f00-9952-11eb-837f-9976bb998376.png)
 # ABOUT THE PROJECT
 <details open>
 <summary>About the Project</summary>
