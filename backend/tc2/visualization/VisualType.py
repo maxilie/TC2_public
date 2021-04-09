@@ -1,0 +1,10 @@
+from enum import Enum
+
+
+class VisualType(Enum):
+    PRICE_GRAPH = 'PRICE_GRAPH'
+    RUN_HISTORY = 'RUN_HISTORY'
+    SINGLE_RUN = 'SINGLE_RUN'
+    DAY_SPREAD = 'DAY_SPREAD'
+    SWING_SETUP = 'SWING_SETUP'
+    BREAKOUT1_SETUP = 'BREAKOUT1_SETUP'

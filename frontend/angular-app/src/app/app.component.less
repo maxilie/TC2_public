@@ -1,0 +1,53 @@
+
+html, body {
+  margin: 0;
+  overflow: hidden;
+}
+
+#canvas {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background: #0e1333e0;
+}
+
+#outermost-container {
+  width: 100vw !important;
+  height: 100vh !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  // Make content sit on top of animated canvas background
+  z-index: 2;
+  // Make content sit on top of animated canvas background
+  position: relative;
+}
+
+#supertab-container {
+  width: 100%;
+  height: 8%;
+  margin-top: 0.9%;
+  margin-bottom: 0.7%;
+}
+
+#subtab-container {
+  height: 8%;
+  margin-top: 2.5%;
+  width: 92%;
+  margin-left: 4.3%;
+}
+
+#content-box-container {
+  border: 4px solid cornflowerblue;
+  border-radius: 3px;
+  width: 95% !important;
+  margin-left: 2.5%;
+  height: 74% !important;
+  max-height: 74% !important;
+  margin-bottom: 4%;
+  background: ghostwhite;
+  overflow: scroll;
+}

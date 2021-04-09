@@ -1,0 +1,101 @@
+#settings-content {
+  overflow: hidden;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  background: white !important;
+
+  #left-column {
+    width: 32%;
+    margin-left: 1%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    #endpoint-container {
+
+    }
+
+    #symbols-container {
+      width: 100%;
+      height: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      #add-symbol-container {
+        width: 80%;
+        height: 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-right: 1%;
+
+        #new-symbol-label {
+          margin-top: auto;
+          margin-bottom: 0.05em;
+          margin-right: 0.1em;
+
+          #new-symbol-input {
+            width: 7em;
+          }
+        }
+
+        #add-symbol-button {
+          border: 0.1em solid green;
+          border-radius: 0.05em;
+          padding-left: 0.25em;
+          padding-right: 0.25em;
+          margin-top: auto;
+          margin-bottom: 0.05em;
+
+          :hover {
+            cursor: pointer !important;
+          }
+        }
+      }
+
+      #symbols-box {
+        height: 75%;
+        border-top: 0.1em solid #565277;
+        border-right: 0.1em solid #565277;
+        border-bottom: 0.1em solid #565277;
+        border-top-right-radius: 0.3em;
+        border-bottom-right-radius: 0.3em;
+        padding-top: 0.1em;
+        padding-right: 0.1em;
+        padding-bottom: 0.1em;
+
+        .symbol-icon {
+          width: 4em;
+          height: 3em;
+          display: inline-block;
+          border: 0.1em solid lightgray;
+          background: #5897fb;
+          color: white;
+          border-radius: 0.8em;
+          font-size: 1em;
+          font-weight: bold;
+          margin: 0.2em;
+          text-align: center;
+
+          :hover {
+            background: #6bc0ff;
+            transform: scale(1.2);
+            cursor: pointer;
+          }
+
+          .symbol-icon-text {
+            padding-left: 0.1em;
+            padding-right: 0.1em;
+            margin-top: auto;
+            margin-bottom: auto;
+          }
+        }
+      }
+    }
+  }
+}

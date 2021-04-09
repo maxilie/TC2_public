@@ -1,0 +1,17 @@
+pymongo
+redis
+alpaca-trade-api==0.49
+websockets
+pandas
+Django==3.0.4
+djangorestframework==3.11.0
+djangorestframework-jwt
+django-cors-headers
+psycopg2 # Requires postgresql from package manager like aptitude on Linux or brew on macOS
+psycopg2-binary
+gunicorn
+cryptography
+python-jose
+tensorflow==2.0.0
+keras==2.3.1
+djangorestframework_simplejwt

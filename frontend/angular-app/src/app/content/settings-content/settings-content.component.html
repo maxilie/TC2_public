@@ -1,0 +1,28 @@
+<div id="settings-content">
+
+    <!-- Left column -->
+    <div id="left-column">
+
+        <!-- Endpoint setting -->
+        <div id="endpoint-container">
+
+        </div>
+
+        <!-- Symbols setting -->
+        <div id="symbols-container">
+            <!-- Add symbol container -->
+            <div id="add-symbol-container">
+                <label id="new-symbol-label">Add Symbol
+                    <input id="new-symbol-input" [(ngModel)]="newSymbol">
+                </label>
+                <button id="add-symbol-button" title="Add {{newSymbol}}">+</button>
+            </div>
+            <!-- Symbols box -->
+            <div id="symbols-box">
+                <div class="symbol-icon" *ngFor="let symbol of symbols | async">
+                    <p class="symbol-icon-text">{{symbol}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

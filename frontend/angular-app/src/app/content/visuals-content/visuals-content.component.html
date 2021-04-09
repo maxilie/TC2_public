@@ -1,0 +1,19 @@
+<div id="visuals-content">
+
+    <!-- Visual graph/chart/display -->
+    <div id="visuals-display" [ngSwitch]="selectedVisual">
+        <app-price-graph-content *ngSwitchCase="visualType.PRICE_GRAPH"></app-price-graph-content>
+        <app-breakout1-setup-content *ngSwitchCase="visualType.BREAKOUT1_SETUP"></app-breakout1-setup-content>
+        <app-swing-setup-content *ngSwitchCase="visualType.SWING_SETUP"></app-swing-setup-content>
+    </div>
+
+    <!-- Container for carousel -->
+    <div id="visuals-nav-container">
+
+        <!-- Carousel for jumping between visuals -->
+        <div id="carousel-container">
+            <button mat-stroked-button class="carousel-button" *ngFor="let type of visualTypes()"
+                    (click)="selectVisual(type)">{{visualType[type].substr(0,4)}}</button>
+        </div>
+    </div>
+</div>

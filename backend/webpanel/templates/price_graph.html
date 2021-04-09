@@ -1,0 +1,52 @@
+<head>
+    <meta charset="UTF-8">
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    {% load static %}
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'price_graph.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'tooltip.css' %}">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        text {
+            font-family: arial;
+            font-size: 12px;
+        }
+
+        path.line {
+            fill: none;
+            stroke: deepskyblue;
+            stroke-width: 0.5px;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: slategray;
+            shape-rendering: crispEdges;
+        }
+
+    </style>
+</head>
+<body>
+
+<div align="center">
+    <p style="display:inline-block;" align="center">Price History ({{valid_days}}/{{total_days}} valid days)</p>
+    <span style="display:inline-block; cursor:context-menu;"
+          data-tooltip-right="Click a dot to zoom in. Double click to reset zoom">
+        <img width="20px" height="20px" src="{% static 'info_icon.svg' %}"/>
+    </span>
+</div>
+
+<script>
+    var json_str = '{{price_graph_data}}';
+    json_str = json_str.replace(new RegExp('&quot;', 'g'), '"');
+    createPriceGraph(json_str);
+</script>
+</body>
+

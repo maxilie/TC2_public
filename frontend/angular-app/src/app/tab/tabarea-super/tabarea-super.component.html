@@ -1,0 +1,13 @@
+<div id="tabarea-super-container">
+    <div [ngClass]="tabs.getSelectedSuperTab() == tabSuperType.runtime_control ? 'tab-super-selected' : 'tab-super'"
+         (click)="tabs.selectSuperTab(tabSuperType.runtime_control, api)">
+        <span class="tab-super__text">Runtime Control</span></div>
+
+    <div [ngClass]="tabs.getSelectedSuperTab() == tabSuperType.strategy_control ? 'tab-super-selected' : 'tab-super'"
+         (click)="tabs.selectSuperTab(tabSuperType.strategy_control, api)">
+        <span class="tab-super__text">Strategy Control</span></div>
+
+    <div [ngClass]="tabs.getSelectedSuperTab() == tabSuperType.system_checks ? 'tab-super-selected' : 'tab-super'"
+         (click)="tabs.selectSuperTab(tabSuperType.system_checks, api)">
+        <span class="tab-super__text">System Checks</span></div>
+</div>

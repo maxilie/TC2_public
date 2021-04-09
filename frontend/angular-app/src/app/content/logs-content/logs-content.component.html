@@ -1,0 +1,68 @@
+<div id="logs-content">
+    <!-- Buttons for switching the type of log messages displayed -->
+    <div id="log-controls">
+        <div id="logfile-buttons">
+            <!-- Button to clear logs -->
+            <button mat-stroked-button class="clear-button" (click)="this.clearLogs()">X</button>
+
+            <!-- "Previous Logfile" arrow -->
+            <button mat-stroked-button class="previous-button" (click)="selectPreviousLogfile()"><<</button>
+
+            <!-- "Next Logfile" arrow -->
+            <button mat-stroked-button class="next-button" (click)="selectNextLogfile()">>></button>
+        </div>
+
+        <!-- Logfile selection dropdown -->
+        <div id="logfiles-dropdown-container">
+            <mat-form-field id="logfiles-dropdown">
+                <mat-select
+                        (selectionChange)="onLogfileChange($event)"
+                        placeholder="Choose a logfile"
+                        ([value])="logfileSelected">
+                    <mat-option *ngFor="let logfilename of logfiles"
+                                (click)="this.selectLogFile(logfilename)"
+                                [value]="logfilename">{{logfilename}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div id="logfeed-controls">
+            <div class="logfeed-button-container">
+                <button mat-stroked-button class="logfeed-button" (click)="selectLogFeed(logFeed.PROGRAM)">PROGRAM
+                </button>
+            </div>
+            <div class="logfeed-button-container">
+                <button mat-stroked-button class="logfeed-button" (click)="selectLogFeed(logFeed.DATA)">DATA
+                </button>
+            </div>
+            <div class="logfeed-button-container">
+                <button mat-stroked-button class="logfeed-button" (click)="selectLogFeed(logFeed.LIVE_TRADING)">TRADING
+                </button>
+            </div>
+            <div class="logfeed-button-container">
+                <button mat-stroked-button class="logfeed-button" (click)="selectLogFeed(logFeed.OPTIMIZATION)">
+                    OPTIMIZATION
+                </button>
+            </div>
+            <div class="logfeed-button-container">
+                <button mat-stroked-button class="logfeed-button" (click)="selectLogFeed(logFeed.API)">
+                    API
+                </button>
+            </div>
+            <div class="logfeed-button-container">
+                <button mat-stroked-button class="logfeed-button" (click)="selectLogFeed(logFeed.VISUALS)">
+                    VISUALS
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Box that shows log messages -->
+    <div #logsContainer id="loglines-container">
+        <p *ngFor="let line of lines$ | async" [ngClass]="line.startsWith('[INFO') ? 'log-line-info' : line.startsWith('[ERROR')
+           ? 'log-line-error' : line.startsWith('[WARNING') ? 'log-line-warning' : 'log-line-debug'">
+            {{line}}<br>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+#health-checks-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: #c5c5c50a;
+
+  // Top & body of page: the selected graph/visual
+  #health-check-display {
+    border-bottom: 0.13em solid black;
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+    box-shadow: inset 0 0 0.2em lightgray;
+    height: 89.5%;
+    margin-top: 0.5%;
+    width: 99%;
+    margin-left: 0.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background: white;
+
+    #health-check-title {
+      font-size: 1.6em;
+      font-weight: bold;
+      text-align: center;
+      height: 2%;
+      width: 100%;
+    }
+
+    #health-check-controls {
+      height: 9%;
+      width: 30%;
+      margin-left: 35%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      #health-check-status-passing {
+        font-size: 1.2em;
+        color: green;
+        height: 100%;
+        width: 50%;
+      }
+
+      #health-check-status-failing {
+        font-size: 1.2em;
+        color: red;
+        height: 100%;
+        width: 50%;
+      }
+
+      #perform-button {
+        font-size: 1.1em;
+        padding-left: 0.35em;
+        padding-right: 0.35em;
+        height: 90%;
+        margin-top: 0.02%;
+        background: #69a9efcf;
+        color: white;
+      }
+    }
+
+    #health-check-messages {
+      width: 100%;
+      height: 75%;
+      overflow: scroll;
+      background: rgba(233, 242, 245, 0.04);
+      border-top: 0.05em solid gray;
+      border-radius: 0.3em;
+      margin-top: 1%;
+
+      .debug-line {
+        font-size: 0.9em;
+        padding-left: 0.5%;
+      }
+    }
+  }
+
+  // Bottom of page: the controls to select other visuals
+  #health-checks-nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 96%;
+    margin-left: 2%;
+    height: 8%;
+    margin-top: 0.2%;
+
+    #carousel-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      height: 70%;
+      margin-top: auto;
+      margin-bottom: auto;
+      width: 90%;
+
+      .carousel-button {
+        max-width: 1.2em !important;
+        margin-right: 1%;
+        background: white;
+        color: black;
+        border-bottom: 0.1em solid #2b2219
+      }
+    }
+  }
+
+}

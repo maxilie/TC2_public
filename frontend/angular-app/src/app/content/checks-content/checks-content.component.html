@@ -1,0 +1,42 @@
+<div id="health-checks-content">
+
+    <!-- Content for the selected health check -->
+    <div id="health-check-display">
+
+        <!-- Title of the health check -->
+        <p id="health-check-title">{{healthCheckType[selectedCheck]}} Health Check</p>
+
+        <!-- Time last updated -->
+        <p align="center">Last updated {{utilService.formatDate(lastUpdated)}}
+            at {{utilService.formatTime(lastUpdated)}}</p>
+
+        <!-- Status and "Run Again" button -->
+        <div id="health-check-controls">
+
+            <!-- Status text (passing or failing) -->
+            <p *ngIf="checkResult.status == healthCheckResultStatus.PASSED"
+               id="health-check-status-passing">Check Passed</p>
+            <p *ngIf="checkResult.status == healthCheckResultStatus.FAILED"
+               id="health-check-status-failing">Check Failed</p>
+
+            <!-- "Run Again" button -->
+            <button mat-stroked-button id="perform-button"
+                    (click)="performCheck(true)">{{checking ? 'Running Check...' : 'Run Again'}}</button>
+        </div>
+
+        <!-- Output messages from the health check -->
+        <div id="health-check-messages">
+            <p class="debug-line" *ngFor="let msg of checkResult.msgs">{{msg}}</p>
+        </div>
+    </div>
+
+    <!-- Container for carousel -->
+    <div id="health-checks-nav-container">
+
+        <!-- Carousel for jumping between visuals -->
+        <div id="carousel-container">
+            <button mat-stroked-button class="carousel-button" *ngFor="let type of checkTypes()"
+                    (click)="selectCheck(type)">{{checkType[type].substr(0, 4)}}</button>
+        </div>
+    </div>
+</div>

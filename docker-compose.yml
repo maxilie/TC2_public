@@ -1,0 +1,69 @@
+version: '3.5'
+
+services:
+  redis:
+    image: redis
+    volumes:
+      - ~/TC2_data/redis/data:/data
+      - ~/TC2_data/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    container_name: redis_container
+    networks:
+      - TC2-network
+    entrypoint: redis-server --appendonly yes
+  mongo:
+    image: mongo
+    volumes:
+      - ~/TC2_data/mongo/data:/data/db
+    container_name: mongo_container
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=yourUser
+      - MONGO_INITDB_ROOT_PASSWORD=yo&rP@ssw0rd_
+      - MONGO_INITDB_DATABASE=stocks
+    networks:
+      - TC2-network
+  sql:
+    image: postgres
+    volumes:
+      - ~/TC2_data/postgresql/data:/var/lib/postgresql/data
+    container_name: sql_container
+    environment:
+      - POSTGRES_DB=stocks
+      - POSTGRES_USER=yourUser
+      - POSTGRES_PASSWORD=yo&rP@ssw0rd_
+    networks:
+      - TC2-network
+  tc2:
+    build: backend
+    ports:
+      - 9000
+    volumes:
+      - ~/TC2_data/logs:/logs
+      - ~/TC2_data/debug_data:/debug_data
+      - static_volume:/opt/services/djangoapp/static
+      - media_volume:/opt/services/djangoapp/media
+      - ~/TC2:/opt/services/tc2/src
+    container_name: TC2
+    depends_on:
+      - sql
+      - mongo
+      - redis
+    networks:
+      - TC2-network
+  nginx:
+    build: frontend
+    ports:
+      - 9100:9100
+    container_name: nginx_container
+    depends_on:
+      - tc2
+    networks:
+      - TC2-network
+
+networks:
+  TC2-network:
+    name: TC2-network
+    driver: bridge
+
+volumes:
+  static_volume:
+  media_volume:

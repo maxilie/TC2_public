@@ -1,0 +1,98 @@
+<!-- The actual price graph with controls for selecting which symbol's data to show -->
+
+<!-- Container div -->
+<div id="visual-container">
+
+    <!-- Container for symbol dropdown, date dropdown, minute dropdown, refresh button -->
+    <div id="visual-controls">
+
+        <!-- Symbol selection dropdown -->
+        <mat-select id="symbol-dropdown" [(value)]="selectedSymbol" placeholder="Symbol">
+            <mat-option *ngFor="let symbol of symbols | async" [value]="symbol" (click)="getSymbolDatesOnFile(symbol)">
+                {{symbol}}
+            </mat-option>
+        </mat-select>
+
+        <!-- Date selection dropdown -->
+        <mat-select id="date-dropdown" [(value)]="checkMomentDate" placeholder="Date">
+            <mat-option *ngFor="let date of datesOnFile | async" [value]="date">
+                {{date}}
+            </mat-option>
+        </mat-select>
+
+        <!-- Div for time selection dropdowns -->
+        <div id="time-selection">
+            <!-- Hour selection dropdown -->
+            <mat-select id="hour-dropdown" [(value)]="checkMomentHour" placeholder="Hour">
+                <mat-option *ngFor="let hour of getMarketHours()" [value]="hour">
+                    {{hour}}
+                </mat-option>
+            </mat-select>
+
+            <p> : </p>
+
+            <!-- Minute selection dropdown -->
+            <mat-select id="minute-dropdown" [(value)]="checkMomentMinute" placeholder="Minute">
+                <mat-option *ngFor="let minute of getMarketMinutes(checkMomentHour)" [value]="minute">
+                    {{minute}}
+                </mat-option>
+            </mat-select>
+        </div>
+
+        <!-- Refresh button -->
+        <button mat-stroked-button id="refresh-button"
+                (click)="updateVisual(true)">{{updating ? "Updating..." : "Update"}}</button>
+
+        <!-- Load button -->
+        <button mat-stroked-button id="load-button"
+                (click)="loadVisual()">Show
+        </button>
+    </div>
+
+    <!-- Time last updated -->
+    <p align="center" id="last-updated">Last updated {{utilService.formatDate(lastUpdated)}}
+        at {{utilService.formatTime(lastUpdated)}}</p>
+
+
+    <!-- Price graph -->
+    <div align="center" id="price-graph-container">
+
+        <!-- Left column with text -->
+        <div id="price-graph-left-column">
+
+            <!-- Title -->
+            <div id="price-graph-title-area">
+                <p id="price-graph-title"> {{selectedSymbol}} Setup on
+                    {{utilService.formatDate(this.checkMoment)}} at {{utilService.formatTime(this.checkMoment)}}</p>
+            </div>
+
+            <!-- Text area for each model step -->
+            <div class="details-text-area" *ngFor="let step of (modelData != null ? modelData.steps : [])">
+                <p class="text-label">{{step.label}}: </p>
+                <p [ngClass]="step.passed ? 'text-passed' : 'text-failed'" title="{{step.info}}">{{step.value}}</p>
+            </div>
+
+            <!-- Viability text area -->
+            <div class="details-text-area">
+                <p class="text-label">Status: </p>
+                <p class="text-passed" *ngIf="modelData && modelData.status == 'VIABLE'"
+                   title="the strategy would attempt to buy this setup">Viable</p>
+                <p class="text-failed" *ngIf="!modelData || modelData.status != 'VIABLE'"
+                   title="this setup would not trigger an entry">Not Viable</p>
+            </div>
+
+        </div>
+
+        <!-- Right column with the graph -->
+        <div id="svg-container">
+            <svg id="svg" viewBox="-2 0 100 100" preserveAspectRatio="xMinYMid meet">
+                <g id="price-graph">
+                    <path class="support-line"></path>
+                    <path class="resistance-line"></path>
+                </g>
+            </svg>
+            <div id="tooltip"></div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,21 @@
+<app-login-content *ngIf="!apiService.isAuthenticated()"
+                   class="content-container">&nbsp;
+</app-login-content>
+<app-logs-content *ngIf="tabs.getSelectedSubTab() == tabSubType.console && apiService.isAuthenticated()"
+                  class="content-container">&nbsp;
+</app-logs-content>
+<app-data-content *ngIf="tabs.getSelectedSubTab() == tabSubType.data && apiService.isAuthenticated()"
+                  class="content-container">&nbsp;
+</app-data-content>
+<app-settings-content *ngIf="tabs.getSelectedSubTab() == tabSubType.settings && apiService.isAuthenticated()"
+                      class="content-container">&nbsp;
+</app-settings-content>
+<app-simulations-content *ngIf="tabs.getSelectedSubTab() == tabSubType.simulations && apiService.isAuthenticated()"
+                         class="content-container">&nbsp;
+</app-simulations-content>
+<app-checks-content *ngIf="tabs.getSelectedSubTab() == tabSubType.health_checks && apiService.isAuthenticated()"
+                    class="content-container">&nbsp;
+</app-checks-content>
+<app-visuals-content *ngIf="tabs.getSelectedSubTab() == tabSubType.visuals && apiService.isAuthenticated()"
+                     class="content-container">&nbsp;
+</app-visuals-content>

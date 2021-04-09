@@ -1,0 +1,69 @@
+<!-- The simulations page, which provides an interface for simulating a strategy on a symbol on a date -->
+
+<!-- Container div -->
+<div id="simulations-container">
+
+    <!-- Container for strategy dropdown, symbol dropdown, date dropdown, warmup days dropdown, and simulate button -->
+    <div id="simulation-controls">
+
+        <!-- Strategy dropdown -->
+        <mat-select class="dropdown" [(value)]="selectedStrategy" placeholder="Strategy">
+            <mat-option *ngFor="let strategy of strategies$ | async" [value]="strategy">
+                {{strategy}}
+            </mat-option>
+        </mat-select>
+
+        <!-- Symbol selection dropdown -->
+        <mat-select id="symbol-dropdown" class="dropdown" [(value)]="selectedSymbol" placeholder="Symbol"
+                    (selectionChange)="fetchDates($event.value)">
+            <mat-option *ngFor="let symbol of symbols$ | async" [value]="symbol">
+                {{symbol}}
+            </mat-option>
+        </mat-select>
+
+        <!-- Date dropdown -->
+        <mat-select class="dropdown" [(value)]="selectedDate" placeholder="Date"
+                    (selectionChange)="selectDate($event.value)">
+            <mat-option *ngFor="let date of dates" [value]="date">
+                {{utilService.formatDate(date)}}
+            </mat-option>
+        </mat-select>
+
+        <!-- Div for time selection dropdowns -->
+        <div id="time-selection">
+            <!-- Hour selection dropdown -->
+            <mat-select id="hour-dropdown" class="dropdown" [(value)]="selectedHour" placeholder="Hour">
+                <mat-option *ngFor="let hour of getMarketHours()" [value]="hour">
+                    {{hour}}
+                </mat-option>
+            </mat-select>
+
+            <p> : </p>
+
+            <!-- Minute selection dropdown -->
+            <mat-select id="minute-dropdown" class="dropdown" [(value)]="selectedMinute" placeholder="Minute">
+                <mat-option *ngFor="let minute of getMarketMinutes(selectedHour)" [value]="minute">
+                    {{minute}}
+                </mat-option>
+            </mat-select>
+        </div>
+
+        <!-- Warmup days dropdown (depends on how much data we have before selectedDate -->
+        <mat-select class="dropdown" [(value)]="warmupSelected" placeholder="Warmup Days">
+            <mat-option *ngFor="let i of warmupDays" [value]="i">
+                {{i}}
+            </mat-option>
+        </mat-select>
+
+        <!-- "Run Simulation" button -->
+        <button mat-stroked-button id="simulate-button" (click)="runSimulation()">
+            {{simulationRunning ? 'Simulating...' : 'Run Simulation'}}
+        </button>
+    </div>
+
+    <!-- Container for simulation output json -->
+    <div id="output-container">
+        <p>{{simulationOutput}}</p>
+    </div>
+
+</div>

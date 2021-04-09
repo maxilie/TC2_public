@@ -1,0 +1,48 @@
+<!-- The actual price graph with controls for selecting which symbol's data to show -->
+
+<!-- Container div -->
+<div id="visual-container">
+
+    <!-- Container for symbol dropdown and refresh button -->
+    <div id="visual-controls">
+
+        <!-- Symbol selection dropdown -->
+        <mat-select id="symbol-dropdown" [(value)]="selectedSymbol" placeholder="Symbol">
+            <mat-option *ngFor="let symbol of symbols | async" [value]="symbol" (click)="loadVisual()">
+                {{symbol}}
+            </mat-option>
+        </mat-select>
+
+        <!-- Refresh button -->
+        <button mat-stroked-button id="refresh-button"
+                (click)="refreshVisual(true)">{{updating ? "Updating..." : "Update"}}</button>
+    </div>
+
+    <!-- Time last updated -->
+    <p align="center">Last updated {{utilService.formatDate(lastUpdated)}}
+        at {{utilService.formatTime(lastUpdated)}}</p>
+
+
+    <!-- Price graph -->
+    <div align="center">
+        <div align="center">
+            <p style="display:inline-block;" align="center"> {{selectedSymbol}} Price History ({{validDays}}/{{totalDays}}
+                valid days)</p>
+            <span style="display:inline-block; cursor:context-menu;"
+                  data-tooltip-right="Click a dot to zoom in. Double click to reset zoom">
+        <img width="0.5em" height="0.5em" src="http://stocks.maxilie.com:9100/static/info_icon.svg"/>
+    </span>
+        </div>
+
+        <div id="svgContainer">
+            <svg id="svg">
+                <g id="price-graph">
+                    <path class="line"></path>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+</div>
+
+<div id="tooltip"></div>

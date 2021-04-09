@@ -1,0 +1,41 @@
+<div [ngSwitch]="tabs.getSelectedSuperTab()" id="tabarea-sub-container">
+    <!-- Show the login tab while user is logged out -->
+    <div *ngIf="!apiService.isAuthenticated()"
+         class='tab-sub-selected'>
+        <span class="tab-sub__text">Login</span></div>
+
+    <!-- Sub-tabs for runtime control -->
+    <div *ngSwitchCase="tabSuperType.runtime_control"
+         [ngClass]="tabs.getSelectedSubTab() == tabSubType.console && apiService.isAuthenticated() ? 'tab-sub-selected' : 'tab-sub'"
+         (click)="tabs.selectSubTab(tabSubType.console, api)">
+        <span class="tab-sub__text">Console</span></div>
+    <div *ngSwitchCase="tabSuperType.runtime_control"
+         [ngClass]="tabs.getSelectedSubTab() == tabSubType.data && apiService.isAuthenticated() ? 'tab-sub-selected' : 'tab-sub'"
+         (click)="tabs.selectSubTab(tabSubType.data, api)">
+        <span class="tab-sub__text">Data</span></div>
+    <div *ngSwitchCase="tabSuperType.runtime_control"
+         [ngClass]="tabs.getSelectedSubTab() == tabSubType.settings && apiService.isAuthenticated() ? 'tab-sub-selected' : 'tab-sub'"
+         (click)="tabs.selectSubTab(tabSubType.settings, api)">
+        <span class="tab-sub__text">Settings</span></div>
+
+    <!--  Sub-tabs for strategy control -->
+    <div *ngSwitchCase="tabSuperType.strategy_control"
+         [ngClass]="tabs.getSelectedSubTab() == tabSubType.strategies && apiService.isAuthenticated() ? 'tab-sub-selected' : 'tab-sub'"
+         (click)="tabs.selectSubTab(tabSubType.strategies, api)">
+        <span class="tab-sub__text">Strategies</span></div>
+    <div *ngSwitchCase="tabSuperType.strategy_control"
+         [ngClass]="tabs.getSelectedSubTab() == tabSubType.simulations && apiService.isAuthenticated() ? 'tab-sub-selected' : 'tab-sub'"
+         (click)="tabs.selectSubTab(tabSubType.simulations, api)">
+        <span class="tab-sub__text">Simulations</span></div>
+
+    <!-- Sub-tabs for system checks -->
+    <div *ngSwitchCase="tabSuperType.system_checks"
+         [ngClass]="tabs.getSelectedSubTab() == tabSubType.health_checks && apiService.isAuthenticated() ? 'tab-sub-selected' : 'tab-sub'"
+         (click)="tabs.selectSubTab(tabSubType.health_checks, api)">
+        <span class="tab-sub__text">Health Checks</span></div>
+    <div *ngSwitchCase="tabSuperType.system_checks"
+         [ngClass]="tabs.getSelectedSubTab() == tabSubType.visuals && apiService.isAuthenticated() ? 'tab-sub-selected' : 'tab-sub'"
+         (click)="tabs.selectSubTab(tabSubType.visuals, api)">
+        <span class="tab-sub__text">Visuals</span></div>
+
+</div>

@@ -1,0 +1,52 @@
+#visuals-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: #c5c5c50a;
+
+  // Top & body of page: the selected graph/visual
+  #visuals-display {
+    border-bottom: 0.13em solid black;
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+    box-shadow: inset 0 0 0.2em lightgray;
+    height: 89.5%;
+    margin-top: 0.5%;
+    width: 99%;
+    margin-left: 0.5%;
+    background: white;
+    overflow: scroll;
+  }
+
+  // Bottom of page: the controls to select other visuals
+  #visuals-nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 96%;
+    margin-left: 2%;
+    height: 8%;
+    margin-top: 0.2%;
+
+    #carousel-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      height: 70%;
+      margin-top: auto;
+      margin-bottom: auto;
+      width: 90%;
+
+      .carousel-button {
+        width: 2% !important;
+        margin-right: 1%;
+        background: white;
+        color: black;
+        border-bottom: 0.1em solid #2b2219;
+      }
+    }
+  }
+
+}

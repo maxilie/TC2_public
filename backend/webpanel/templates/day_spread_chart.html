@@ -1,0 +1,27 @@
+<head>
+    <meta charset="UTF-8">
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="{% static 'day_spread_chart.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'tooltip.css' %}">
+</head>
+<body>
+<div align="center">
+    <p style="display:inline-block;" align="center">Median Day Spread: {{med_spread_str}} ({{volatile_str}} to day
+        trade)</p>
+    <span style="display:inline-block; cursor:context-menu;"
+          data-tooltip-right="For the last 60 days on file, the difference between the highest and lowest point of each day is shown">
+        <img width="20px" height="20px" src="{% static 'info_icon.svg' %}"/>
+    </span>
+</div>
+<p align="center">Highest Frequency Spreads:</p>
+
+<div align="center">
+    <svg width="960" height="400"></svg>
+    <script>
+        var json_str = '{{day_spread_data}}';
+        json_str = json_str.replace(new RegExp('&quot;', 'g'), '"');
+        console.log(json_str);
+        createPriceSpreadChart(json_str);
+    </script>
+</div>
+</body>

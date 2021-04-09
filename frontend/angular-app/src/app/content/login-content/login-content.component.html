@@ -1,0 +1,26 @@
+<div id="login-content">
+
+    <!-- Input boxes where user types their username and password -->
+    <div id="input-boxes">
+
+        <!-- Username box and label -->
+        <div id="username-container">
+            <label id="username-label">Username</label>
+            <input type="text" id="username-box" [(ngModel)]="api.authEndpoint.username">
+        </div>
+
+        <!-- Password box and label -->
+        <div id="password-container">
+            <label id="password-label">Password</label>
+            <input type="password" id="password-box" [(ngModel)]="api.authEndpoint.password">
+        </div>
+    </div>
+
+    <!-- "Login" button -->
+    <div id="login-button-container">
+        <button mat-stroked-button id="login-button" (click)="this.login()">Log In</button>
+    </div>
+    <div>
+        <span *ngIf="api.authEndpoint.errorText != null">{{ api.authEndpoint.errorText }}></span>
+    </div>
+</div>

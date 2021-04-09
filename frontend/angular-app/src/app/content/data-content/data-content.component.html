@@ -1,0 +1,42 @@
+<!-- The data page, allowing us to monitor and aid the program's stock market data -->
+
+<!-- Container div -->
+<div id="data-container">
+
+    <!-- Data status text -->
+    <div id="status-container">
+        <p id="status-title">Data Status:</p>
+        <p id="status-text">{{dataStatus}}</p>
+    </div>
+
+    <!-- "Heal Data" button -->
+    <div id="heal-container">
+        <label id="save-time-label">Save Time:
+            <input id="save-time-checkbox" type="checkbox" (change)="saveTime=$event.target.checked">
+        </label>
+        <button mat-stroked-button id="heal-button"
+                (click)="this.healData()">{{dataHealing ? 'Healing Data...' : 'Heal Data'}}</button>
+    </div>
+
+    <!-- Container for selecting data patching options -->
+    <div id="patch-container">
+
+        <!-- Symbol selection dropdown -->
+        <mat-select id="symbol-dropdown" [(value)]="symbolToPatch" placeholder="Symbol to Patch">
+            <mat-option *ngFor="let symbol of symbols$ | async" [value]="symbol">
+                {{symbol}}
+            </mat-option>
+        </mat-select>
+
+        <!-- Date dropdown -->
+        <mat-select id="date-dropdown" [(value)]="startDate" placeholder="Date">
+            <mat-option *ngFor="let date of dateOptions" [value]="date">
+                {{date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()}}
+            </mat-option>
+        </mat-select>
+
+        <!-- "Patch Data" button -->
+        <button mat-stroked-button id="patch-button"
+                (click)="patchData()">{{dataPatching ? 'Patching Data...' : 'Patch Data'}}</button>
+    </div>
+</div>
