@@ -3,13 +3,10 @@
 <details open>
 <summary>About the Project</summary>
         
-TC2 is the Python edition of TradeCatcher Java, carefully rewritten and designed to make it as quick as possible to 
-implement new strategies and technical analysis models, optimize the strategies and models, and visualize and control
- the strategies and models.
+TC2 is the Python edition of my original TradeCatcher Java project, carefully rewritten and designed to make it as quick as possible to 
+implement new strategies and technical analysis models, optimize the strategies and models, and visualize them.
 
 Additionally, TC2 includes a webpanel that enables more precise control of the program's operations.
-
-The following sections of this `README.md` explain the project's backend. Information on the front-end is found in `README-Frontend.md`.
 </details>
 
 
