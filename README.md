@@ -74,7 +74,7 @@ The TC2 program itself consists of four main *processes*, each running in its ow
 (or in its own thread, if there are insufficient cores available):
 - Continuous Data Collection and Daily Analysis Model Training
 - Optimization of Strategy Parameters Using Historical Simulations
-- Live Day Trading (strategy selection and creation logic only; strategy buy+sell logic is executed called in another
+- Live Day Trading (strategy selection and creation logic only; strategy buy+sell logic is executed in another
  thread, as explained below)
 - Live Swing Trading
 
@@ -97,7 +97,7 @@ Additionally, there are a few *threads* managed by the program:
 - Django Worker Threads
     - Spawned by API calls to perform tasks (running simulations, fetching program data, etc.)
 - Strategy Execution Threads
-    - Spawned by the Live Trading processes when they decide to begin execution of a strategy.
+    - Spawned by the Live Trading processes when they decide to begin execution of a strategy
 </details>
 
 
@@ -270,15 +270,15 @@ A single docker-compose.yml file builds and starts all the backend and frontend 
 
 All of these are created using the project's docker-compose.yml file:
 ```bash
-# Pull the latest docker-compose.yml and move to its directory
-cd /home/stocks && rm -rf TC2 && git clone https://maxilie:cc27fceff4cdd24ae84d5f9a5d48d0f74f2850d8@github.com/maxilie/TC2 && cd TC2 && cd /home/stocks/TC2
-# Stop any already-running containers
+# Pull the latest docker-compose.yml and move to its directory.
+cd /home/stocks && rm -rf TC2 && git clone https://<git_user>:<git_app_password>@github.com/maxilie/TC2 && cd TC2 && cd /home/stocks/TC2
+# Stop any already-running containers.
 docker-compose down
-# Run docker-compose detached
+# Run docker-compose detached.
 docker-compose up -d
 
 # To restart everything in a single command:
-cd /home/stocks && rm -rf TC2 && git clone https://maxilie:cc27fceff4cdd24ae84d5f9a5d48d0f74f2850d8@github.com/maxilie/TC2 && cd /home/stocks/TC2 && docker-compose down && docker-compose up -d --build
+cd /home/stocks && rm -rf TC2 && git clone https://<git_user>:<git_app_password>@github.com/maxilie/TC2 && cd /home/stocks/TC2 && docker-compose down && docker-compose up -d --build
 
 # To restart only django and TC2 in a single command:
 # TODO
